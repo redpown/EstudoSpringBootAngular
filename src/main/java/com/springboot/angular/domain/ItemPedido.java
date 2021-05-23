@@ -6,6 +6,8 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "itempedido", schema = "public")
 public class ItemPedido implements Serializable {
@@ -13,6 +15,7 @@ public class ItemPedido implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	@EmbeddedId
 	private itemPedidoPk id = new itemPedidoPk();//usar o @Embeddable  nessa classe itemPedidoPk sempre que fizer isso como id
 	
@@ -31,10 +34,12 @@ public class ItemPedido implements Serializable {
 		this.preco = preco;
 	}
 	
+	@JsonIgnore//todo get faz serailizacao nesse caso fica ciclica(loop infinito) por ser outro objeto
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
 	
+	@JsonIgnore
 	public Produto getProduto() {
 		return id.getProduto();
 	}
