@@ -22,7 +22,7 @@ public class itemPedidoPk implements Serializable {
 	public Produto getProduto() {
 		return produto;
 	}
-	public void setProdtuo(Produto prodtuo) {
+	public void setProduto(Produto prodtuo) {
 		this.produto = prodtuo;
 	}
 	public Pedido getPedido() {
